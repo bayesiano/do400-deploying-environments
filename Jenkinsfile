@@ -58,20 +58,6 @@ stage('Build Image') {
       }
     }
 
-  stage('Deploy - Stage') {
-    environment {
-      APP_NAMESPACE = "edajgm-shopping-cart-stage"
-      QUAY = credentials('QUAY_USER')
-    }
-    steps {
-      sh """
-        oc set image \
-        deployment ${DEPLOYMENT_STAGE} \
-        shopping-cart-production=quay.io/${QUAY_USR}/do400-deploying-environments:build-${BUILD_NUMBER} \
-        -n ${APP_NAMESPACE} --record
-      """
-    }
-  }
 
   }
 }
